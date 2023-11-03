@@ -61,6 +61,12 @@ build CMakeFiles/Tomographie.dir/Grid.cpp.o: CXX_COMPILER__Tomographie_unscanned
   OBJECT_DIR = CMakeFiles/Tomographie.dir
   OBJECT_FILE_DIR = CMakeFiles/Tomographie.dir
 
+build CMakeFiles/Tomographie.dir/file_to_sequence.cpp.o: CXX_COMPILER__Tomographie_unscanned_Debug /Users/baptiste/CLionProjects/Tomographie/file_to_sequence.cpp || cmake_object_order_depends_target_Tomographie
+  DEP_FILE = CMakeFiles/Tomographie.dir/file_to_sequence.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.6 -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/Tomographie.dir
+  OBJECT_FILE_DIR = CMakeFiles/Tomographie.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Tomographie
@@ -69,7 +75,7 @@ build CMakeFiles/Tomographie.dir/Grid.cpp.o: CXX_COMPILER__Tomographie_unscanned
 #############################################
 # Link the executable Tomographie
 
-build Tomographie: CXX_EXECUTABLE_LINKER__Tomographie_Debug CMakeFiles/Tomographie.dir/main.cpp.o CMakeFiles/Tomographie.dir/Grid.cpp.o
+build Tomographie: CXX_EXECUTABLE_LINKER__Tomographie_Debug CMakeFiles/Tomographie.dir/main.cpp.o CMakeFiles/Tomographie.dir/Grid.cpp.o CMakeFiles/Tomographie.dir/file_to_sequence.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.6
   OBJECT_DIR = CMakeFiles/Tomographie.dir
   POST_BUILD = :
