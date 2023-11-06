@@ -2,7 +2,7 @@
 // Created by Baptiste Audugé on 04/10/2023.
 //
 
-#include "Grid.h"
+#include "../include/Grid.h"
 #include <vector>
 #include <cassert>
 #include <iostream>

@@ -2,10 +2,10 @@
 // Created by Baptiste Audugé on 03/11/2023.
 //
 
-#include "file_to_sequence.h"
+#include "../include/file_to_sequence.h"
 #include <string>
 #include <fstream>
-#include "utils.h"
+#include "../include/utils.h"
 
 namespace tomographie {
     void get_sequence (std::ifstream  &file, ListSequence &lseq) {

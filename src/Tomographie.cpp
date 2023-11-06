@@ -2,7 +2,7 @@
 // Created by Baptiste Audugé on 06/11/2023.
 //
 
-#include "Tomographie.h"
+#include "../include/Tomographie.h"
 #include <vector>
 
 namespace tomographie {

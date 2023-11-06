@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include "Grid.h"
-#include "file_to_sequence.h"
-#include "Tomographie.h"
+#include "../include/Grid.h"
+#include "../include/file_to_sequence.h"
+#include "../include/Tomographie.h"
 
 bool check_args(int argc, char **argv) {
     if (argc < 1) return true;
