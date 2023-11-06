@@ -6,7 +6,9 @@
 #define TOMOGRAPHIE_UTILS_H
 #include <vector>
 
-typedef std::vector<int> Sequence;
-typedef std::vector<Sequence> ListSequence;
+namespace tomographie {
+    typedef std::vector<int> Sequence;
+    typedef std::vector<Sequence> ListSequence;
+}
 
 #endif //TOMOGRAPHIE_UTILS_H
