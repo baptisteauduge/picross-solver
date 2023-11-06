@@ -9,4 +9,6 @@ add_executable(Tomographie main.cpp
         file_to_sequence.cpp
         file_to_sequence.h
         utils.h
+        Tomographie.cpp
+        Tomographie.h
 )

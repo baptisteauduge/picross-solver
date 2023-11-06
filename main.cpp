@@ -1,8 +1,8 @@
 #include <iostream>
-#include <vector>
 #include <fstream>
 #include "Grid.h"
 #include "file_to_sequence.h"
+#include "Tomographie.h"
 
 bool check_args(int argc, char **argv) {
     if (argc < 1) return true;
@@ -37,5 +37,9 @@ int main(int argc, char **argv) {
     if (!handle_file(filename, seq_line, seq_column)) {
         return 1;
     }
+    Tomographie tomographie(seq_line, seq_column);
+    bool is_possible = tomographie.color();
+    std::cout << is_possible << std::endl;
+    tomographie.print_grid();
     return 0;
 }
