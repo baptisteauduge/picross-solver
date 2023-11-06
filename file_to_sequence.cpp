@@ -16,9 +16,9 @@ void get_sequence (std::ifstream  &file, ListSequence &lseq) {
     std::getline(file, line);
     do {
         line += " ";
+        seq = Sequence();
         while (!line.empty()) {
-            seq = Sequence();
-            idx_delimiter = line.find_first_of(SEQ_DELIMITER);
+            idx_delimiter = (int) line.find_first_of(SEQ_DELIMITER);
             seq_str = line.substr(0, idx_delimiter);
             if (!seq_str.empty()) {
                 seq_val = std::stoi(seq_str);

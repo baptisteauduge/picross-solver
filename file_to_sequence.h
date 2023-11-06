@@ -6,7 +6,7 @@
 #define TOMOGRAPHIE_FILE_TO_SEQUENCE_H
 
 #include "utils.h"
-#define SEQ_DELIMITER " "
+#define SEQ_DELIMITER ' '
 
 /**
  * Get a sequence from a file
