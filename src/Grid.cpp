@@ -99,9 +99,9 @@ namespace tomographie {
                     return;
                 }
                 if (cell == BLACK)
-                    std::cout << "#";
+                    std::cout << BLACK_SYMBOL;
                 if (cell == WHITE)
-                    std::cout << " ";
+                    std::cout << WHITE_SYMBOL;
             }
             std::cout << std::endl;
         }

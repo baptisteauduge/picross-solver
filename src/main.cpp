@@ -40,6 +40,6 @@ int main(int argc, char **argv) {
     tomographie::Tomographie tomographie(seq_line, seq_column);
     bool is_possible = tomographie.color();
     std::cout << is_possible << std::endl;
-    tomographie.print_grid();
+    tomographie.get_grid().print_grid();
     return 0;
 }

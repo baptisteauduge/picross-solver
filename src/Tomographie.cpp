@@ -108,8 +108,4 @@ namespace tomographie {
         }
         return true;
     }
-
-    void Tomographie::print_grid() {
-        grid.print_grid();
-    }
 }
