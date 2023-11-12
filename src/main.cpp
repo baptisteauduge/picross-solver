@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include "../include/Grid.h"
-#include "../include/file_to_sequence.h"
-#include "../include/Tomographie.h"
+#include "Grid.h"
+#include "file_to_sequence.h"
+#include "Tomographie.h"
+#include "utils.h"
 
 bool check_args(int argc, char **argv) {
     if (argc < 1) return true;
@@ -29,6 +30,7 @@ int main(int argc, char **argv) {
     std::string filename;
     tomographie::ListSequence seq_line;
     tomographie::ListSequence seq_column;
+    time_t start, end;
 
     if (check_args(argc, argv)) {
         return 1;
@@ -37,9 +39,16 @@ int main(int argc, char **argv) {
     if (!handle_file(filename, seq_line, seq_column)) {
         return 1;
     }
+    time(&start);
     tomographie::Tomographie tomographie(seq_line, seq_column);
-    bool is_possible = tomographie.color();
-    std::cout << is_possible << std::endl;
+//    tomographie::TriState is_possible = tomographie.color();
+    bool is_possible = tomographie.enumeration();
+    time(&end);
+    double time_taken = double(end - start);
+    std::cout << "Time taken by program is : " << std::fixed
+        << time_taken << std::setprecision(5);
+    std::cout << " sec " << std::endl;
+    std::cout << (int) is_possible << std::endl;
     tomographie.get_grid().print_grid();
     return 0;
 }

@@ -14,14 +14,14 @@
 
 namespace tomographie {
 
-    enum GridColors {
+    enum class CellColor {
         WHITE ,
         BLACK,
         EMPTY
     };
 
     typedef std::pair<int, int> GridSize;
-    typedef std::vector<GridColors> GridLine;
+    typedef std::vector<CellColor> GridLine;
 
     class Grid {
         private:
@@ -35,7 +35,7 @@ namespace tomographie {
             * @return A boolean that indicated if the subsequence [i:j[ is empty or as the provided color at the
              * provided line
             */
-            bool is_empty_or_match_line(int line, int i, int j, GridColors color = EMPTY);
+            bool is_empty_or_match_line(int line, int i, int j, CellColor color = CellColor::EMPTY);
 
             /**
             * @param column The column to test
@@ -45,7 +45,7 @@ namespace tomographie {
             * @return A boolean that indicates if the subsequence [i:j[ is empty or as the provided color at the
              * provided column.
             */
-            bool is_empty_or_match_col(int col, int i, int j, GridColors color = EMPTY);
+            bool is_empty_or_match_col(int col, int i, int j, CellColor color = CellColor::EMPTY);
             GridSize size;
         public:
             /**
@@ -54,7 +54,13 @@ namespace tomographie {
              * @param m The width
              * @param default_color The default color of the grid
              */
-            Grid (int n, int m, GridColors default_color = EMPTY);
+            Grid (int n, int m, CellColor default_color = CellColor::EMPTY);
+
+            /**
+             * A copy constructor
+             * @param other Another Grid to copy
+             */
+            Grid (const Grid &other);
 
             /**
             * Check if a line can contain a sequence without considering the current values of the grid
@@ -100,7 +106,7 @@ namespace tomographie {
              * @param col The column to edit
              * @param value The new value
              */
-            void set_cell(int line, int col, GridColors value);
+            void set_cell(int line, int col, CellColor value);
 
             /**
              * Returns the current value at [line][col]
@@ -108,7 +114,7 @@ namespace tomographie {
              * @param col The column to get the value from
              * @return Current value at grid[line][col]
              */
-            GridColors get_cell(int line, int col);
+            CellColor get_cell(int line, int col);
 
             /**
              * Print a Grid with as black cell the symbol BLACK_SYMBOL
@@ -116,6 +122,18 @@ namespace tomographie {
              * Print a message of error is the Grid is not full (i.e. it contains EMPTY cells)
              */
             void print_grid();
+
+            /**
+             * Static method that returns an empty Grid
+             * @return
+             */
+            static Grid get_empty_grid();
+
+            /**
+             * Returns true if the Grid doesn't have an EMPTY cell, false otherwise
+             * @return A boolean that indicates if the Grid is full or not
+             */
+            bool is_full();
     };
 } // tomographie
 

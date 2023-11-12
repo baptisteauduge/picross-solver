@@ -9,6 +9,11 @@
 namespace tomographie {
     typedef std::vector<int> Sequence;
     typedef std::vector<Sequence> ListSequence;
+    enum class TriState {
+        True = 1,
+        False = 0,
+        Unknown = -1
+    };
 }
 
 #endif //TOMOGRAPHIE_UTILS_H
