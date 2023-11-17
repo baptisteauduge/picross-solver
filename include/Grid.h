@@ -7,10 +7,11 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "utils.h"
 
-#define BLACK_SYMBOL "#"
-#define WHITE_SYMBOL " "
+#define BLACK_SYMBOL "◼︎"
+#define WHITE_SYMBOL "・"
 
 namespace tomographie {
 
@@ -22,6 +23,7 @@ namespace tomographie {
 
     typedef std::pair<int, int> GridSize;
     typedef std::vector<CellColor> GridLine;
+    typedef std::map<std::tuple<int, int>, bool> CacheCanContain;
 
     class Grid {
         private:
@@ -46,6 +48,42 @@ namespace tomographie {
              * provided column.
             */
             bool is_empty_or_match_col(int col, int i, int j, CellColor color = CellColor::EMPTY);
+
+            /**
+            * Check if a line can contain a sequence, the function is taking under consideration
+            * the current values of the line
+            * @param line The line to test
+            * @param j The first cell of the line to check
+            * @param l The first index of the sequence
+            * @param seq The sequence
+            * @return A boolean that indicated if a line can contain a sequence
+            */
+            bool column_can_contain_sequence_gen(int column, int j, int l, Sequence & seq);
+
+            /**
+            * Check if a  column can contain a sequence, the function is taking under consideration
+            * the current values of the column.
+            * @param column The column to test
+            * @param j The first cell of the column to check
+            * @param l The first index of the sequence
+            * @param seq The sequence
+            * @return A boolean that indicates if a column can contain a sequence
+            */
+            bool line_can_contain_sequence_gen(int line, int j, int l, Sequence &seq);
+
+            /**
+             * Cache used by method column can contain sequence, in way to make dynamic programming
+             */
+            CacheCanContain cache_contain_col = CacheCanContain();
+
+            /**
+             * Cache used by method line can contain sequence, in way to make dynamic programming
+             */
+            CacheCanContain cache_contain_line = CacheCanContain();
+
+            /**
+             * The size of the grid ...
+             */
             GridSize size;
         public:
             /**
@@ -63,6 +101,11 @@ namespace tomographie {
             Grid (const Grid &other);
 
             /**
+             * Creates an empty grid
+             */
+            Grid ();
+
+            /**
             * Check if a line can contain a sequence without considering the current values of the grid
             * @param j The length of the grid
             * @param l The index of the first sequence
@@ -74,24 +117,27 @@ namespace tomographie {
             /**
             * Check if a line can contain a sequence, the function is taking under consideration
             * the current values of the line
+            * The function will use dynamic programming to have a O(n^3) complexity.
             * @param line The line to test
             * @param j The first cell of the line to check
             * @param l The first index of the sequence
             * @param seq The sequence
             * @return A boolean that indicated if a line can contain a sequence
             */
-            bool line_can_contain_sequence_gen(int line, int j, int l, Sequence &seq);
+            bool line_can_contain_sequence_cache(int line, int j, int l, Sequence &seq, bool reset_cache = true);
+
 
             /**
-             * Check if a  column can contain a sequence, the function is taking under consideration
-             * the current values of the column.
-             * @param column The column to test
-             * @param j The first cell of the column to check
-             * @param l The first index of the sequence
-             * @param seq The sequence
-             * @return A boolean that indicates if a column can contain a sequence
-             */
-            bool column_can_contain_sequence_gen(int column, int j, int l, Sequence & seq);
+            * Check if a  column can contain a sequence, the function is taking under consideration
+            * the current values of the column.
+            * The function will use dynamic programming to have a O(n^3) complexity
+            * @param column The column to test
+            * @param j The first cell of the column to check
+            * @param l The first index of the sequence
+            * @param seq The sequence
+            * @return A boolean that indicates if a column can contain a sequence
+            */
+            bool column_can_contain_sequence_cache(int column, int j, int l, Sequence & seq, bool reset_cache = true);
 
             /**
              * Returns the size of the Grid

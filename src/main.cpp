@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <chrono>
 #include "Grid.h"
 #include "file_to_sequence.h"
 #include "Tomographie.h"
@@ -26,29 +27,32 @@ bool handle_file(std::string &filename, tomographie::ListSequence &seq_line, tom
     return true;
 }
 
+using namespace tomographie;
+
 int main(int argc, char **argv) {
     std::string filename;
     tomographie::ListSequence seq_line;
     tomographie::ListSequence seq_column;
-    time_t start, end;
 
-    if (check_args(argc, argv)) {
+
+    if (check_args(argc, argv))
         return 1;
-    }
     filename = argv[1];
-    if (!handle_file(filename, seq_line, seq_column)) {
+    if (!handle_file(filename, seq_line, seq_column))
         return 1;
-    }
-    time(&start);
+    std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
     tomographie::Tomographie tomographie(seq_line, seq_column);
-//    tomographie::TriState is_possible = tomographie.color();
+
     bool is_possible = tomographie.enumeration();
-    time(&end);
-    double time_taken = double(end - start);
-    std::cout << "Time taken by program is : " << std::fixed
-        << time_taken << std::setprecision(5);
+
+    std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+    auto time_taken_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    double time_taken_s = (double) time_taken_ms.count() / 1000.0;
+
+    std::cout << "Time taken by program is : " << time_taken_s;
     std::cout << " sec " << std::endl;
-    std::cout << (int) is_possible << std::endl;
+    std::cout << "Is grid successfully filled : " << (int) is_possible << std::endl;
+
     tomographie.get_grid().print_grid();
     return 0;
 }
