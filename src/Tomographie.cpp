@@ -32,10 +32,10 @@ namespace tomographie {
         if (curr_grid.get_cell(curr_line, curr_col) != CellColor::EMPTY)
             return color_lines_rec(curr_line, curr_col + 1, new_cols_to_see, curr_grid);
         curr_grid.set_cell(curr_line, curr_col, CellColor::WHITE);
-        is_white = curr_grid.line_can_contain_sequence_cache(curr_line, num_col - 1, (int) line_seq[curr_line].size(),
+        is_white = curr_grid.line_can_contain_sequence_mem(curr_line, num_col - 1, (int) line_seq[curr_line].size(),
                                                       line_seq[curr_line]);
         curr_grid.set_cell(curr_line, curr_col, CellColor::BLACK);
-        is_black = curr_grid.line_can_contain_sequence_cache(curr_line, num_col - 1, (int) line_seq[curr_line].size(),
+        is_black = curr_grid.line_can_contain_sequence_mem(curr_line, num_col - 1, (int) line_seq[curr_line].size(),
                                                       line_seq[curr_line]);
         if (is_black && is_white) {
             curr_grid.set_cell(curr_line, curr_col, CellColor::EMPTY);
@@ -65,10 +65,10 @@ namespace tomographie {
         if (curr_grid.get_cell(curr_line, curr_col) != CellColor::EMPTY)
             return color_cols_rec(curr_line + 1, curr_col, new_lines_to_see, curr_grid);
         curr_grid.set_cell(curr_line, curr_col, CellColor::WHITE);
-        is_white = curr_grid.column_can_contain_sequence_cache(curr_col, num_line - 1, (int) col_seq[curr_col].size(),
+        is_white = curr_grid.column_can_contain_sequence_mem(curr_col, num_line - 1, (int) col_seq[curr_col].size(),
                                                         col_seq[curr_col]);
         curr_grid.set_cell(curr_line, curr_col, CellColor::BLACK);
-        is_black = curr_grid.column_can_contain_sequence_cache(curr_col, num_line - 1, (int) col_seq[curr_col].size(),
+        is_black = curr_grid.column_can_contain_sequence_mem(curr_col, num_line - 1, (int) col_seq[curr_col].size(),
                                                         col_seq[curr_col]);
         if (is_black && is_white) {
             curr_grid.set_cell(curr_line, curr_col, CellColor::EMPTY);
