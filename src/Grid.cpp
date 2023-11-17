@@ -49,14 +49,14 @@ namespace tomographie {
                 (is_empty_or_match_line(line, j - seq[l-1] + 1, j + 1 , CellColor::BLACK)
                 // Checking if the separator (WHITE) is available
                 && is_empty_or_match_line(line, j - seq[l - 1], j - seq[l - 1] + 1, CellColor::WHITE)
-                && line_can_contain_sequence_cache(line, j - seq[l - 1] - 1, l - 1, seq, false))
+                && line_can_contain_sequence_mem(line, j - seq[l - 1] - 1, l - 1, seq, false))
                 ||
                 (is_empty_or_match_line(line, j, j + 1, CellColor::WHITE)
-                && line_can_contain_sequence_cache(line, j - 1, l, seq, false))
+                && line_can_contain_sequence_mem(line, j - 1, l, seq, false))
                 );
     }
 
-    bool Grid::line_can_contain_sequence_cache(int line, int j, int l, Sequence &seq, bool reset_cache) {
+    bool Grid::line_can_contain_sequence_mem(int line, int j, int l, Sequence &seq, bool reset_cache) {
         if (reset_cache) cache_contain_line.clear();
         auto cached = cache_contain_line.find({j, l});
         if (cached != cache_contain_line.end())
@@ -75,14 +75,14 @@ namespace tomographie {
                 (is_empty_or_match_col(column, j - seq[l-1] + 1, j + 1 , CellColor::BLACK)
                  // Checking if the separator (WHITE) is available
                  && is_empty_or_match_col(column, j - seq[l - 1], j - seq[l - 1] + 1, CellColor::WHITE)
-                 && column_can_contain_sequence_cache(column, j - seq[l - 1] - 1, l - 1, seq, false))
+                 && column_can_contain_sequence_mem(column, j - seq[l - 1] - 1, l - 1, seq, false))
                 ||
                 (is_empty_or_match_col(column, j, j + 1, CellColor::WHITE)
-                 && column_can_contain_sequence_cache(column, j - 1, l, seq, false))
+                 && column_can_contain_sequence_mem(column, j - 1, l, seq, false))
         );
     }
 
-    bool Grid::column_can_contain_sequence_cache(int column, int j, int l, Sequence & seq, bool reset_cache) {
+    bool Grid::column_can_contain_sequence_mem(int column, int j, int l, Sequence & seq, bool reset_cache) {
         if (reset_cache) cache_contain_col.clear();
         auto cached = cache_contain_col.find({j, l});
         if (cached != cache_contain_col.end())

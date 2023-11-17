@@ -124,7 +124,7 @@ namespace tomographie {
             * @param seq The sequence
             * @return A boolean that indicated if a line can contain a sequence
             */
-            bool line_can_contain_sequence_cache(int line, int j, int l, Sequence &seq, bool reset_cache = true);
+            bool line_can_contain_sequence_mem(int line, int j, int l, Sequence &seq, bool reset_cache = true);
 
 
             /**
@@ -137,7 +137,7 @@ namespace tomographie {
             * @param seq The sequence
             * @return A boolean that indicates if a column can contain a sequence
             */
-            bool column_can_contain_sequence_cache(int column, int j, int l, Sequence & seq, bool reset_cache = true);
+            bool column_can_contain_sequence_mem(int column, int j, int l, Sequence & seq, bool reset_cache = true);
 
             /**
              * Returns the size of the Grid
