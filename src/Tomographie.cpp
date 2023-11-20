@@ -4,6 +4,7 @@
 
 #include "Tomographie.h"
 #include <vector>
+#include <iostream>
 
 namespace tomographie {
 
@@ -122,7 +123,7 @@ namespace tomographie {
         TriState is_colored = color();
         Grid copy_grid = grid;
         std::pair<bool, Grid> res;
-
+        grid.print_grid();
         if (is_colored == TriState::False)
             return false;
         res = enumeration_rec(copy_grid, 0, CellColor::WHITE);
@@ -139,10 +140,11 @@ namespace tomographie {
         TriState res_color_propagate;
         Grid copy_grid;
         std::pair<bool, Grid> res_enum_rec;
-
         if (k == num_line * num_col)
             return std::make_pair(true, curr_grid);
         int i = (k/num_col), j = k % num_col;
+        if (curr_grid.get_cell(i, j) != CellColor::EMPTY)
+            return enumeration_rec(curr_grid, k+1, c);
         res_color_propagate = color_propagate(curr_grid, i, j, c);
         if (res_color_propagate == TriState::True)
             return std::make_pair(true, curr_grid);
@@ -160,8 +162,6 @@ namespace tomographie {
         std::set<int> lines_to_see = {i};
         std::set<int> cols_to_see = {j};
 
-        if (curr_grid.get_cell(i, j) != CellColor::EMPTY)
-            return TriState::Unknown;
         curr_grid.set_cell(i, j, c);
         while (!lines_to_see.empty() || !cols_to_see.empty()) {
             std::set<int> new_cols_to_see;

@@ -108,10 +108,8 @@ namespace tomographie {
     void Grid::print_grid() {
         for (auto &line: grid) {
             for (auto &cell: line) {
-                if (cell == CellColor::EMPTY) {
-                    std::cout << std::endl << "Error: You are trying to print a Grid who's not full ..." << std::endl;
-                    return;
-                }
+                if (cell == CellColor::EMPTY)
+                    std::cout << EMPTY_SYMBOL;
                 if (cell == CellColor::BLACK)
                     std::cout << BLACK_SYMBOL;
                 if (cell == CellColor::WHITE)

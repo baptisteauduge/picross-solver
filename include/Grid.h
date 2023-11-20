@@ -10,8 +10,9 @@
 #include <map>
 #include "utils.h"
 
-#define BLACK_SYMBOL "◼︎"
-#define WHITE_SYMBOL "・"
+#define BLACK_SYMBOL "■"
+#define WHITE_SYMBOL "□"
+#define EMPTY_SYMBOL 'x'
 
 namespace tomographie {
 
