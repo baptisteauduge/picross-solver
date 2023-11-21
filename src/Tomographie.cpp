@@ -123,7 +123,8 @@ namespace tomographie {
         TriState is_colored = color();
         Grid copy_grid = grid;
         std::pair<bool, Grid> res;
-        grid.print_grid();
+        if (is_colored == TriState::True)
+            return true;
         if (is_colored == TriState::False)
             return false;
         res = enumeration_rec(copy_grid, 0, CellColor::WHITE);

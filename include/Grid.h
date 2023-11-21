@@ -35,7 +35,7 @@ namespace tomographie {
             * @param i The first index to test
             * @param j The last index to last (excluded)
             * @param color The color to check (or empty)
-            * @return A boolean that indicated if the subsequence [i:j[ is empty or as the provided color at the
+            * @return A boolean that indicates if the subsequence [i:j[ is empty or has the provided color at the
              * provided line
             */
             bool is_empty_or_match_line(int line, int i, int j, CellColor color = CellColor::EMPTY);
@@ -45,7 +45,7 @@ namespace tomographie {
             * @param i The first index to test
             * @param j The last index to last (excluded)
             * @param color The color to check (or empty)
-            * @return A boolean that indicates if the subsequence [i:j[ is empty or as the provided color at the
+            * @return A boolean that indicates if the subsequence [i:j[ is empty or has the provided color at the
              * provided column.
             */
             bool is_empty_or_match_col(int col, int i, int j, CellColor color = CellColor::EMPTY);
@@ -62,7 +62,7 @@ namespace tomographie {
             bool column_can_contain_sequence_gen(int column, int j, int l, Sequence & seq);
 
             /**
-            * Check if a  column can contain a sequence, the function is taking under consideration
+            * Check if a column can contain a sequence, the function is taking under consideration
             * the current values of the column.
             * @param column The column to test
             * @param j The first cell of the column to check
@@ -129,7 +129,7 @@ namespace tomographie {
 
 
             /**
-            * Check if a  column can contain a sequence, the function is taking under consideration
+            * Check if a column can contain a sequence, the function is taking under consideration
             * the current values of the column.
             * The function will use dynamic programming to have a O(n^3) complexity
             * @param column The column to test
@@ -166,7 +166,6 @@ namespace tomographie {
             /**
              * Print a Grid with as black cell the symbol BLACK_SYMBOL
              * and as white cell the WHITE_SYMBOL.
-             * Print a message of error is the Grid is not full (i.e. it contains EMPTY cells)
              */
             void print_grid();
 

@@ -40,16 +40,16 @@ int main(int argc, char **argv) {
     filename = argv[1];
     if (!handle_file(filename, seq_line, seq_column))
         return 1;
-    std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
     tomographie::Tomographie tomographie(seq_line, seq_column);
 
     bool is_possible = tomographie.enumeration();
 
-    std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
-    auto time_taken_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    double time_taken_s = (double) time_taken_ms.count() / 1000.0;
+    std::chrono::time_point<std::chrono::high_resolution_clock> end = std::chrono::high_resolution_clock::now();
+    auto time_taken_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    double time_taken_s = (double) time_taken_ms.count() / 1.0e9;
 
-    std::cout << "Time taken by program is : " << time_taken_s;
+    std::cout << "Time taken by program is : " << std::setprecision(9) << time_taken_s;
     std::cout << " sec " << std::endl;
     std::cout << "Is grid successfully filled : " << (int) is_possible << std::endl;
 

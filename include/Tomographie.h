@@ -27,8 +27,8 @@ namespace tomographie {
         static std::set<int> init_range(int size);
 
         /**
-         * Trying coloring curr_line, starting at position curr_col of curr_grid
-         * The method will append new_cols_to_see with ì when setting a new cell color on the column i
+         * Trying to color curr_line, starting at position curr_col of curr_grid
+         * The method will append new_cols_to_see with i when setting a new cell color on the column i
          * Recursive function
          * @param curr_line Index of the line to treat
          * @param curr_col First index of the column to treat
@@ -39,7 +39,7 @@ namespace tomographie {
         bool color_lines_rec(int curr_line, int curr_col, std::set<int> &new_cols_to_see, Grid &curr_grid);
 
         /**
-         * Trying coloring curr_line, starting at position curr_col of the grid instance variable
+         * Trying to color curr_line, starting at position curr_col of the grid instance variable
          * The method will append new_cols_to_see with ì when setting a new cell color on the column i
          * Recursive function
          * @param curr_line Index of the line to treat
@@ -50,7 +50,7 @@ namespace tomographie {
         bool color_lines_rec(int curr_line, int curr_col, std::set<int> &new_cols_to_see);
 
         /**
-         * Trying coloring curr_col, starting at position curr_line of curr_grid
+         * Trying to color curr_col, starting at position curr_line of curr_grid
          * The method will append new_lines_to_see with with ì when setting a new cell color on the line i
          * Recursive function
          * @param curr_line First index of the line to treat
@@ -62,7 +62,7 @@ namespace tomographie {
         bool color_cols_rec(int curr_line, int curr_col, std::set<int> &new_lines_to_see, Grid &curr_grid);
 
         /**
-         * Trying coloring curr_col, starting at position curr_line of the instance variable grid
+         * Trying to color curr_col, starting at position curr_line of the instance variable grid
          * The method will append new_lines_to_see with with ì when setting a new cell color on the line i
          * Recursive function
          * @param curr_line First index of the line to treat
@@ -91,14 +91,14 @@ namespace tomographie {
          * Method who color the Grid, by taking under consideration the column and line sequences.
          * The method could finish with a Grid that is not full.
          * This is a partial resolution method.
-         * @return A boolean that indicates if  it's possible to fill the Grid
+         * @return A TriState that indicates if it's possible to fill the Grid
          */
         TriState color();
 
         /**
          * Method used to fully complete the grid, it will enumerate all possibilities recursively
          * @return A boolean that indicates if the grid as a solution, if the Grid as a Solution,
-         * it will be set into the instance variable grid?
+         * it will be set into the instance variable grid.
          */
         bool enumeration();
 
@@ -119,7 +119,7 @@ namespace tomographie {
          * @param i The line index
          * @param j The column index
          * @param c The color to put at cell (i, j)
-         * @return A boolean that indicates if the grid as been filled
+         * @return A boolean that indicates if the grid has been filled
          */
         TriState color_propagate(Grid &curr_grid, int i, int j, CellColor c);
     };
