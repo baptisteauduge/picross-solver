@@ -137,6 +137,15 @@ namespace tomographie {
         return res.first;
     }
 
+    int Tomographie::get_next_k_to_fill(Grid &curr_grid, int k) {
+        if (k == num_line * num_col)
+            return k;
+        int i = (k/num_col), j = k % num_col;
+        if (curr_grid.get_cell(i, j) != CellColor::EMPTY)
+            return get_next_k_to_fill(curr_grid, k+1);
+        return k;
+    }
+
     std::pair<bool, Grid> Tomographie::enumeration_rec(Grid &curr_grid, int k, CellColor c) {
         TriState res_color_propagate;
         Grid copy_grid;
@@ -144,19 +153,18 @@ namespace tomographie {
         if (k == num_line * num_col)
             return std::make_pair(true, curr_grid);
         int i = (k/num_col), j = k % num_col;
-        if (curr_grid.get_cell(i, j) != CellColor::EMPTY)
-            return enumeration_rec(curr_grid, k+1, c);
         res_color_propagate = color_propagate(curr_grid, i, j, c);
         if (res_color_propagate == TriState::True)
             return std::make_pair(true, curr_grid);
         else if (res_color_propagate == TriState::False)
             return std::make_pair(false, Grid::get_empty_grid());
         copy_grid = curr_grid;
-        res_enum_rec = enumeration_rec(copy_grid, k+1, CellColor::WHITE);
+        int next_k = get_next_k_to_fill(copy_grid, k+1);
+        res_enum_rec = enumeration_rec(copy_grid, next_k, CellColor::WHITE);
         if (res_enum_rec.first) {
             return res_enum_rec;
         }
-        return enumeration_rec(curr_grid, k+1, CellColor::BLACK);
+        return enumeration_rec(curr_grid, next_k, CellColor::BLACK);
     }
 
     TriState Tomographie::color_propagate(Grid &curr_grid, int i, int j, CellColor c) {

@@ -72,6 +72,14 @@ namespace tomographie {
          */
         bool color_cols_rec(int curr_line, int curr_col, std::set<int> &new_lines_to_see);
 
+        /**
+         * Method used to return the next indice of a cell empty.
+         * @param curr_grid The grid to treat
+         * @param k The current k
+         * @return The next k of an empty cell
+         */
+        int get_next_k_to_fill(Grid &curr_grid, int k);
+
     public:
         /**
          * Create a Tomographie, with line_sequence and col_sequence.
