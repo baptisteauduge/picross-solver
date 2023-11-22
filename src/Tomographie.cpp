@@ -164,6 +164,13 @@ namespace tomographie {
         std::set<int> cols_to_see = {j};
 
         curr_grid.set_cell(i, j, c);
+
+        bool n_is_color_possible = !curr_grid.line_can_contain_sequence_mem(i, num_col - 1,
+                                                                          (int) line_seq[i].size(),line_seq[i]);
+        n_is_color_possible = n_is_color_possible || !curr_grid.column_can_contain_sequence_mem(j, num_line - 1,
+                                                                            (int) col_seq[j].size(),col_seq[j]);
+        if (n_is_color_possible)
+            return TriState::False;
         while (!lines_to_see.empty() || !cols_to_see.empty()) {
             std::set<int> new_cols_to_see;
             std::set<int> new_lines_to_see;
