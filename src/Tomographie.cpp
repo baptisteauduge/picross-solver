@@ -108,7 +108,7 @@ namespace tomographie {
             new_cols_to_see.clear();
             for (auto curr_col: cols_to_see) {
                 if (!color_cols_rec(0, curr_col, new_lines_to_see))
-                    return TriState::True;
+                    return TriState::False;
             }
             cols_to_see.clear();
             lines_to_see.insert(new_lines_to_see.begin(), new_lines_to_see.end());
