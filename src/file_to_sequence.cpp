@@ -17,7 +17,7 @@ namespace tomographie {
 
         std::getline(file, line);
         do {
-            line += " ";
+            line += SEQ_DELIMITER;
             seq = Sequence();
             while (!line.empty()) {
                 idx_delimiter = (int) line.find_first_of(SEQ_DELIMITER);
