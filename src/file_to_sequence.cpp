@@ -9,7 +9,7 @@
 
 namespace tomographie {
     void get_sequence (std::ifstream  &file, ListSequence &lseq) {
-        std::string line ;
+        std::string line;
         Sequence seq;
         int idx_delimiter;
         std::string seq_str;
